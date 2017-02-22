@@ -1,5 +1,5 @@
 
-file(GLOB_RECURSE RECIPES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} recipes/*.txt)
+file(GLOB RECIPES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} recipes/*)
 
 macro(get_directory_base OUTPUT_VAR DIR)
     if(CMAKE_VERSION VERSION_LESS "3.0")
@@ -10,9 +10,8 @@ macro(get_directory_base OUTPUT_VAR DIR)
 endmacro()
 
 foreach(RECIPE ${RECIPES})
-    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/${RECIPE} ${CMAKE_CURRENT_BINARY_DIR}/${RECIPE})
     get_directory_base(RECIPE_DIR ${RECIPE})
-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${RECIPE} DESTINATION etc/cget/${RECIPE_DIR})
+    install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${RECIPE} DESTINATION etc/cget/recipes/)
     message(STATUS "RECIPE: ${RECIPE}")
     message(STATUS "RECIPE_DIR: ${RECIPE_DIR}")
 endforeach()
