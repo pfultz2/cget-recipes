@@ -1,5 +1,5 @@
 libressl
 akheron/jansson
-enki/libev
-c-ares/c-ares
+libev
+c-ares
 zlib
