@@ -74,6 +74,13 @@ find_library ( HAVE_LIBRT rt )
 # Tweaks
 set ( HAVE_CLOCK_SYSCALL ${HAVE_CLOCK_GETTIME} )
 
+if(MSVC)
+  file(READ ${CMAKE_CURRENT_SOURCE_DIR}/event.c event_c_file)
+  file(WRITE ${CMAKE_CURRENT_SOURCE_DIR}/event.c "
+#include <winsock2.h>
+${event_c_file}")
+endif()
+
 file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/config.h.in "
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
