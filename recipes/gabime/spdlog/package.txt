@@ -1,0 +1,1 @@
+gabime/spdlog@v0.12.0

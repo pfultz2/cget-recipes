@@ -1,1 +1,1 @@
-pybind/pybind11@stable
+pybind/pybind11@stable -DPYBIND11_TEST=Off # Always disable tests since it depends on python
