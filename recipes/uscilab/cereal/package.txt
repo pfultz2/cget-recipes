@@ -1,1 +1,1 @@
-USCiLab/cereal@master
+USCiLab/cereal@master -DWITH_WERROR=Off
