@@ -1,0 +1,1 @@
+jbeder/yaml-cpp@master -DYAML_CPP_BUILD_TOOLS=Off # Disable tests because they are broken
