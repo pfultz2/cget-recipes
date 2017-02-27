@@ -1,0 +1,1 @@
+alanxz/rabbitmq-c@master
