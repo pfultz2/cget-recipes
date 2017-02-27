@@ -1,1 +1,1 @@
-http://www.netlib.org/lapack/lapack-3.7.0.tgz
+Reference-LAPACK/lapack@v3.7.0 -DCBLAS=On

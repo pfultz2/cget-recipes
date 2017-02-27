@@ -1,0 +1,6 @@
+arrayfire/forge
+arrayfire/threads
+khronosgroup/opencl-clhpp
+boost
+lapack
+google/googletest

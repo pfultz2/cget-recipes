@@ -1,0 +1,1 @@
+glfw@master -DGLFW_BUILD_DOCS=Off

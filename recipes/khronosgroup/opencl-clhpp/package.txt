@@ -1,0 +1,1 @@
+KhronosGroup/OpenCL-CLHPP@master -DBUILD_TESTS=Off # Disable tests since they are broken
