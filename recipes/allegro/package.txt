@@ -1,0 +1,1 @@
+http://download.gna.org/allegro/allegro/5.2.2/allegro-5.2.2.tar.gz
