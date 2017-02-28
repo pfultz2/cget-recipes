@@ -1,1 +1,1 @@
-c-ares@master
+c-ares@master -X build.cmake
