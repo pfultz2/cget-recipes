@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 2.8)
+
+if(BUILD_SHARED_LIBS)
+    set(DISABLE_SHARED Off CACHE BOOL "")
+    set(DISABLE_STATIC On CACHE BOOL "")
+else()
+    set(DISABLE_SHARED On CACHE BOOL "")
+    set(DISABLE_STATIC Off CACHE BOOL "")
+endif()
+
+include(${CGET_CMAKE_ORIGINAL_SOURCE_FILE})
