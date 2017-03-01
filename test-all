@@ -1,9 +1,10 @@
 #!/bin/bash
 RECIPES=$(find recipes | grep package.txt | cut -c9- | sed 's,/package.txt,,')
 rm -f failed
+cget install -U .
 for RECIPE in $RECIPES; do
     cget rm -U -A -y
-    cget install -U .
+    cget install .
     cget install $RECIPE
     if [ $? -ne 0 ]
     then
