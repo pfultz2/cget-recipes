@@ -1,1 +1,1 @@
-gabime/spdlog@v0.12.0
+gabime/spdlog@v0.12.0 -H sha256:5cfd6a0b3182a88e1eb35bcb65a7ef9035140d7c73b16ba6095939dbf07325b9

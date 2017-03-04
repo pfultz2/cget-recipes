@@ -1,1 +1,1 @@
-Reference-LAPACK/lapack@v3.7.0 -DCBLAS=On
+http://www.netlib.org/lapack/lapack-3.7.0.tgz -DCBLAS=On -H sha256:ed967e4307e986474ab02eb810eed1d1adc73f5e1e3bc78fb009f6fe766db3be

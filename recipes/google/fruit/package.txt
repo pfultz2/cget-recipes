@@ -1,1 +1,1 @@
-google/fruit@v2.0.4
+google/fruit@v2.0.4 -H sha256:32a9e708859b94a587f922a0d69afcf999dc3c5b103ceba22d83e2dd6c7ba39c

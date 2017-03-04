@@ -1,1 +1,1 @@
-curl/curl@curl-7_52_1 -DCMAKE_USE_LIBSSH2=On -DCURL_ZLIB=On -DENABLE_ARES=On -DUSE_NGHTTP2=On -X build.cmake
+https://curl.haxx.se/download/curl-7.52.1.tar.gz -H sha256:a8984e8b20880b621f61a62d95ff3c0763a3152093a9f9ce4287cfd614add6ae -DCMAKE_USE_LIBSSH2=On -DCURL_ZLIB=On -DENABLE_ARES=On -DUSE_NGHTTP2=On -X build.cmake

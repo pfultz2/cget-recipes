@@ -1,1 +1,1 @@
-https://support.hdfgroup.org/ftp/HDF5/prev-releases/hdf5-1.8.12/src/hdf5-1.8.12.tar.bz2
+https://support.hdfgroup.org/ftp/HDF5/prev-releases/hdf5-1.8.12/src/hdf5-1.8.12.tar.bz2 -H sha256:6d080f913a226a3ce390a11d9b571b2d5866581a2aa4434c398cd371c7063639

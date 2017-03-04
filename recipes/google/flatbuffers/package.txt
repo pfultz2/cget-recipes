@@ -1,1 +1,1 @@
-google/flatbuffers@v1.6.0
+google/flatbuffers@v1.6.0 -H sha256:768c50ebf5823f8cde81a9e38ffff115c8f5a5d031a37520d0024e7b9c6cd22e
