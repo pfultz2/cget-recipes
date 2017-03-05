@@ -1,1 +1,2 @@
-clMathLibraries/clBLAS@master -X build.cmake
+# clMathLibraries/clBLAS@master -X build.cmake
+pfultz2/clBLAS@cmake -X build.cmake -DBUILD_TEST=Off # Disable tests

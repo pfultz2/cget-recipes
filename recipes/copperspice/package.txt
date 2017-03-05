@@ -1,1 +1,1 @@
-copperspice@cs-1.4.0
+copperspice@cs-1.4.0 -H sha256:062b395749fbd4e21fb4ba84179c093799c59979ba3fba2d595b4ae678ca567c
