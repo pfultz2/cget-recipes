@@ -1,3 +1,4 @@
+openal
 libpng
 libjpeg
 zlib
