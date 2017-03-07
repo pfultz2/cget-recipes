@@ -1,0 +1,3 @@
+libjpeg
+openal
+xiph/vorbis
