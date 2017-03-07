@@ -1,0 +1,4 @@
+expat
+pcre
+sqlite3
+zlib
