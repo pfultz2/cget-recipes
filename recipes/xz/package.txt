@@ -1,0 +1,1 @@
+http://tukaani.org/xz/xz-5.2.3.tar.bz2 -X build.cmake -H sha256:fd9ca16de1052aac899ad3495ad20dfa906c27b4a5070102a2ec35ca3a4740c1
