@@ -1,0 +1,7 @@
+# Disable opencv since it conflicts with openblas
+# opencv
+google/glog
+gflags
+google/protobuf
+hdf5
+xianyi/openblas

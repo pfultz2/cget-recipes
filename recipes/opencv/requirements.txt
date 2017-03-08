@@ -1,0 +1,9 @@
+libtiff
+libpng
+libjpeg
+xz
+zlib
+# ffmpeg 
+# jasper
+# lcms1
+# openexr

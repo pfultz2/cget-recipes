@@ -1,0 +1,1 @@
+BVLC/caffe@master -X build.cmake -DBLAS=Open -DBUILD_python=Off -DUSE_OPENCV=Off

@@ -299,3 +299,14 @@ install(TARGETS lzma
     LIBRARY DESTINATION "lib"
 )
 install(DIRECTORY src/liblzma/api/ DESTINATION "include" FILES_MATCHING PATTERN "*.h")
+
+set(prefix ${CMAKE_INSTALL_PREFIX})
+set(exec_prefix ${CMAKE_INSTALL_PREFIX}/bin)
+set(libdir ${CMAKE_INSTALL_PREFIX}/lib)
+set(includedir ${CMAKE_INSTALL_PREFIX}/include)
+set(PACKAGE_VERSION 5.2.3)
+set(PACKAGE_URL "http://tukaani.org/lzma/")
+set(PTHREAD_CFLAGS)
+set(LIBS)
+configure_file(src/liblzma/liblzma.pc.in ${CMAKE_BINARY_DIR}/liblzma.pc @ONLY)
+install(FILES ${CMAKE_BINARY_DIR}/liblzma.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig/)
