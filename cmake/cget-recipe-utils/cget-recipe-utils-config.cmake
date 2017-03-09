@@ -1,0 +1,73 @@
+
+function(patch_file FILE MATCH REPLACEMENT)
+    message(STATUS "Patch: ${FILE}")
+    file(READ ${FILE} CONTENT)
+    string(REPLACE 
+        "${MATCH}"
+        "${REPLACEMENT}" 
+        OUTPUT_CONTENT "${CONTENT}")
+    file(WRITE ${FILE} "${OUTPUT_CONTENT}")
+endfunction()
+
+function(read_lines FILE VAR)
+    file(READ ${FILE} LINES)
+    # Replace semicolons with "<semi>" to avoid CMake messing with them.
+    string(REPLACE ";" "<semi>" LINES "${LINES}")
+    # Split into lines keeping newlines to avoid foreach skipping empty ones.
+    string(REGEX MATCHALL "[^\n]*\n" LINES "${LINES}")
+    set(${VAR} ${LINES} PARENT_SCOPE)
+endfunction()
+
+function(ac_config_header INPUT OUTPUT)
+    read_lines(${INPUT} CONFIG)
+    list(LENGTH CONFIG length)
+    math(EXPR length "${length} - 1")
+    foreach (i RANGE ${length})
+        list(GET CONFIG ${i} line)
+        if (line MATCHES "^#( *)undef (.*)\n")
+            set(space "${CMAKE_MATCH_1}")
+            set(var ${CMAKE_MATCH_2})
+            if (NOT DEFINED ${var} OR (var MATCHES ^HAVE AND NOT ${var}))
+                set(line "/* #${space}undef ${var} */\n")
+            else ()
+                if (${${var}} STREQUAL "/**/" OR var STREQUAL "inline" OR ${${var}} STREQUAL "TRUE")
+                    set(value ${${var}})
+                elseif(var MATCHES ^HAVE)
+                    if(${var})
+                        set(value 1)
+                    else()
+                        set(value 0)
+                    endif()
+                elseif(${var} MATCHES "^[0-9]+$")
+                    set(value ${${var}})
+                else()
+                    set(value \"${${var}}\")
+                endif()
+                set(line "#${space}define ${var} ${value}\n")
+            endif ()
+        endif ()
+        string(REPLACE "<semi>" ";" line "${line}")
+        set(CONFIG_OUT "${CONFIG_OUT}\n${line}")
+    endforeach ()
+    file(WRITE ${OUTPUT}
+"/* config.h.  Generated from config.h.in by configure.  */
+/* config.h.in.  Generated from configure.ac by autoheader.  */
+
+${CONFIG_OUT}")
+endfunction()
+
+function(parse_makefile_var MAKEFILE VAR)
+    file(STRINGS ${MAKEFILE} lines)
+    foreach (line ${lines})
+        string(REGEX MATCHALL "[^ \t]+" words ${line})
+        list(LENGTH words words_len)
+        if(words_len GREATER 2)
+            list(GET words 0 var_name)
+            list(GET words 1 assign)
+            if(assign STREQUAL "=" AND var_name STREQUAL ${VAR})
+                list(REMOVE_AT words 0 1)
+                set(${VAR} ${words} PARENT_SCOPE)
+            endif()
+        endif()
+    endforeach()
+endfunction()

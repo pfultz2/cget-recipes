@@ -1,0 +1,1 @@
+https://downloads.sf.net/project/freetype/freetype2/2.7.1/freetype-2.7.1.tar.bz2 -DWITH_ZLIB=On -DWITH_BZip2=On -DWITH_PNG=On -DWITH_HarfBuzz=Off -H sha256:3a3bb2c4e15ffb433f2032f50a5b5a92558206822e22bfe8cbe339af4aa82f88

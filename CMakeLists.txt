@@ -16,5 +16,7 @@ foreach(RECIPE ${RECIPES})
     # message(STATUS "RECIPE_DIR: ${RECIPE_DIR}")
 endforeach()
 
+install(DIRECTORY cmake DESTINATION share/)
+
 enable_testing()
 

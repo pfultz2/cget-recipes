@@ -1,0 +1,3 @@
+zlib
+bzip2
+libpng
