@@ -8,24 +8,32 @@ else()
     add_definitions(-Wno-narrowing)
 endif()
 
+if(BUILD_SHARED_LIBS)
+    set(LINK_TYPE "PRIVATE")
+else()
+    set(LINK_TYPE "PUBLIC")
+endif()
+
 find_package(ZLIB REQUIRED)
-include_directories(${ZLIB_INCLUDE_DIRS})
-
 find_package(JPEG REQUIRED)
-include_directories(${JPEG_INCLUDE_DIR})
-
 find_package(PNG REQUIRED)
-include_directories(${PNG_INCLUDE_DIRS})
-
 find_package(TIFF REQUIRED)
-include_directories(${TIFF_INCLUDE_DIR})
-
 
 macro(create_lib NAME)
     file(GLOB SOURCES ${ARGN})
     add_library(${NAME} ${SOURCES})
+    target_include_directories(${NAME} ${LINK_TYPE} 
+        ${ZLIB_INCLUDE_DIRS}
+        ${JPEG_INCLUDE_DIR}
+        ${PNG_INCLUDE_DIRS}
+        ${TIFF_INCLUDE_DIR})
+    target_link_libraries(${NAME} ${LINK_TYPE}
+        ${ZLIB_LIBRARIES}
+        ${JPEG_LIBRARIES}
+        ${PNG_LIBRARIES}
+        ${TIFF_LIBRARIES})
     install(TARGETS 
-    ${NAME}
+    ${NAME} EXPORT freeimage-targets
     RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" 
     ARCHIVE DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" 
     LIBRARY DESTINATION "${CMAKE_INSTALL_PREFIX}/lib")
@@ -101,12 +109,12 @@ create_lib(OpenEXR
     Source/OpenEXR/Imath/*.cpp
 )
 target_include_directories(OpenEXR PUBLIC 
-    Source/OpenEXR
-    Source/OpenEXR/Half
-    Source/OpenEXR/Iex
-    Source/OpenEXR/IlmImf
-    Source/OpenEXR/IlmThread
-    Source/OpenEXR/Imath
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Source/OpenEXR>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Source/OpenEXR/Half>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Source/OpenEXR/Iex>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Source/OpenEXR/IlmImf>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Source/OpenEXR/IlmThread>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Source/OpenEXR/Imath>
 )
 
 # FreeImage
@@ -183,17 +191,108 @@ create_lib(FreeImage
 )
 target_compile_definitions(FreeImage PUBLIC -DFREEIMAGE_LIB)
 target_include_directories(FreeImage PRIVATE Source/)
+target_include_directories(FreeImage SYSTEM INTERFACE $<INSTALL_INTERFACE:$<INSTALL_PREFIX>/include>)
 
-target_link_libraries(FreeImage
+
+target_link_libraries(FreeImage ${LINK_TYPE}
     OpenEXR
     OpenJPEG
     RawLite
     WebP
-    ${ZLIB_LIBRARIES}
-    ${JPEG_LIBRARIES}
-    ${PNG_LIBRARIES}
-    ${TIFF_LIBRARIES}
 )
+
+file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/freeimage-config.cmake.in "
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro OPTIONAL RESULT_VARIABLE _CMakeFindDependencyMacro_FOUND)
+if (NOT _CMakeFindDependencyMacro_FOUND)
+  macro(find_dependency dep)
+    if (NOT \${dep}_FOUND)
+      set(cmake_fd_version)
+      if (\${ARGC} GREATER 1)
+        set(cmake_fd_version \${ARGV1})
+      endif()
+      set(cmake_fd_exact_arg)
+      if(\${CMAKE_FIND_PACKAGE_NAME}_FIND_VERSION_EXACT)
+        set(cmake_fd_exact_arg EXACT)
+      endif()
+      set(cmake_fd_quiet_arg)
+      if(\${CMAKE_FIND_PACKAGE_NAME}_FIND_QUIETLY)
+        set(cmake_fd_quiet_arg QUIET)
+      endif()
+      set(cmake_fd_required_arg)
+      if(\${CMAKE_FIND_PACKAGE_NAME}_FIND_REQUIRED)
+        set(cmake_fd_required_arg REQUIRED)
+      endif()
+      find_package(\${dep} \${cmake_fd_version}
+          \${cmake_fd_exact_arg}
+          \${cmake_fd_quiet_arg}
+          \${cmake_fd_required_arg}
+      )
+      string(TOUPPER \${dep} cmake_dep_upper)
+      if (NOT \${dep}_FOUND AND NOT \${cmake_dep_upper}_FOUND)
+        set(\${CMAKE_FIND_PACKAGE_NAME}_NOT_FOUND_MESSAGE "\${CMAKE_FIND_PACKAGE_NAME} could not be found because dependency \${dep} could not be found.")
+        set(${CMAKE_FIND_PACKAGE_NAME}_FOUND False)
+        return()
+      endif()
+      set(cmake_fd_version)
+      set(cmake_fd_required_arg)
+      set(cmake_fd_quiet_arg)
+      set(cmake_fd_exact_arg)
+    endif()
+  endmacro()
+endif()
+
+set_and_check( FREEIMAGE_INCLUDE_DIR \"@PACKAGE_INCLUDE_INSTALL_DIR@\" )
+set_and_check( FREEIMAGE_INCLUDE_DIRS \"\${FREEIMAGE_INCLUDE_DIR}\" )
+set_and_check( FREEIMAGE_LIB_INSTALL_DIR \"@PACKAGE_LIB_INSTALL_DIR@\" )
+
+")
+if(NOT BUILD_SHARED_LIBS)
+file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/freeimage-config.cmake.in "
+find_dependency(ZLIB REQUIRED)
+find_dependency(JPEG REQUIRED)
+find_dependency(PNG REQUIRED)
+find_dependency(TIFF REQUIRED)
+")
+endif()
+
+file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/freeimage-config.cmake.in "
+include( \"\${CMAKE_CURRENT_LIST_DIR}/freeimage-targets.cmake\" )
+
+set(FREEIMAGE_LIBRARY FreeImage)
+set(FREEIMAGE_LIBRARIES FreeImage)
+")
+
+
+
+include( CMakePackageConfigHelpers )
+set(INCLUDE_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/include)
+set(LIB_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/lib)
+set(CONFIG_PACKAGE_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/lib/cmake/freeimage)
+configure_package_config_file(
+  ${CMAKE_CURRENT_BINARY_DIR}/freeimage-config.cmake.in
+  ${CMAKE_CURRENT_BINARY_DIR}/freeimage-config.cmake
+  INSTALL_DESTINATION ${CONFIG_PACKAGE_INSTALL_DIR}
+  PATH_VARS LIB_INSTALL_DIR INCLUDE_INSTALL_DIR
+)
+
+write_basic_package_version_file(
+  ${CMAKE_CURRENT_BINARY_DIR}/freeimage-config-version.cmake
+  VERSION 3.17.0
+  COMPATIBILITY SameMajorVersion
+)
+
+install( EXPORT freeimage-targets
+  DESTINATION
+    ${CONFIG_PACKAGE_INSTALL_DIR}
+)
+
+install( FILES
+  ${CMAKE_CURRENT_BINARY_DIR}/freeimage-config.cmake
+  ${CMAKE_CURRENT_BINARY_DIR}/freeimage-config-version.cmake
+  DESTINATION
+${CONFIG_PACKAGE_INSTALL_DIR} )
 
 # Set default output dirs
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
