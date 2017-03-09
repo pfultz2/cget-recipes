@@ -1,1 +1,1 @@
-https://downloads.sourceforge.net/project/boost/boost/1.63.0/boost_1_63_0.zip -H sha256:97ce6635df1f44653a597343cd5757bb8b6b992beb3720f5fc761e3644bcbe7b -X build.cmake
+https://downloads.sourceforge.net/project/boost/boost/1.63.0/boost_1_63_0.tar.bz2 -H md5:1c837ecd990bb022d07e7aab32b09847 -X build.cmake
