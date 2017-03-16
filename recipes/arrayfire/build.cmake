@@ -59,4 +59,8 @@ set(FREEIMAGE_INCLUDE_PATH \${FREEIMAGE_INCLUDE_DIR} CACHE INTERNAL \"\")
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR}/cmake/modules)
 
+if(NOT EXISTS assets/examples)
+    file(MAKE_DIRECTORY assets/examples)
+endif()
+
 include(${CGET_CMAKE_ORIGINAL_SOURCE_FILE})
