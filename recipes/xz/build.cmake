@@ -4,68 +4,65 @@ project(lzma C)
 
 find_package(cget-recipe-utils)
 
-include ( CheckFunctionExists )
-include ( CheckSymbolExists )
-include ( CheckIncludeFiles )
-include ( CheckStructHasMember )
-include ( CheckTypeSize )
-
-check_include_files(byteswap.h HAVE_BYTESWAP_H)
-check_include_files(CommonCrypto/CommonDigest.h HAVE_COMMONCRYPTO_COMMONDIGEST_H)
-check_include_files(dlfcn.h HAVE_DLFCN_H)
-check_include_files(fcntl.h HAVE_FCNTL_H)
-check_include_files(getopt.h HAVE_GETOPT_H)
-check_include_files(immintrin.h HAVE_IMMINTRIN_H)
-check_include_files(inttypes.h HAVE_INTTYPES_H)
-check_include_files(limits.h HAVE_LIMITS_H)
-check_include_files(memory.h HAVE_MEMORY_H)
-check_include_files(sha256.h HAVE_SHA256_H)
-check_include_files(sha2.h HAVE_SHA2_H)
-check_include_files(stdint.h HAVE_STDINT_H)
-check_include_files(stdlib.h HAVE_STDLIB_H)
-check_include_files(strings.h HAVE_STRINGS_H)
-check_include_files(string.h HAVE_STRING_H)
-check_include_files(sys/byteorder.h HAVE_SYS_BYTEORDER_H)
-check_include_files(sys/capsicum.h HAVE_SYS_CAPSICUM_H)
-check_include_files(sys/endian.h HAVE_SYS_ENDIAN_H)
-check_include_files(sys/param.h HAVE_SYS_PARAM_H)
-check_include_files(sys/stat.h HAVE_SYS_STAT_H)
-check_include_files(sys/time.h HAVE_SYS_TIME_H)
-check_include_files(sys/types.h HAVE_SYS_TYPES_H)
-check_include_files(unistd.h HAVE_UNISTD_H)
-
-check_symbol_exists(CC_SHA256_CTX "stdlib.h" HAVE_CC_SHA256_CTX)
-check_symbol_exists(CC_SHA256_Init "stdlib.h" HAVE_CC_SHA256_INIT)
-check_symbol_exists(clock_gettime "stdlib.h" HAVE_CLOCK_GETTIME)
-check_symbol_exists(CLOCK_MONOTONIC "stdlib.h" HAVE_DECL_CLOCK_MONOTONIC)
-check_symbol_exists(futimens "stdlib.h" HAVE_FUTIMENS)
-check_symbol_exists(futimes "stdlib.h" HAVE_FUTIMES)
-check_symbol_exists(futimesat "stdlib.h" HAVE_FUTIMESAT)
-check_symbol_exists(getopt_long "stdlib.h" HAVE_GETOPT_LONG)
-check_symbol_exists(posix_fadvise "stdlib.h" HAVE_POSIX_FADVISE)
-check_symbol_exists(pthread_condattr_setclock "stdlib.h" HAVE_PTHREAD_CONDATTR_SETCLOCK)
-check_symbol_exists(SHA256Init "stdlib.h" HAVE_SHA256INIT)
-check_symbol_exists(SHA256_CTX "stdlib.h" HAVE_SHA256_CTX)
-check_symbol_exists(SHA256_Init "stdlib.h" HAVE_SHA256_INIT)
-check_symbol_exists(SHA2_CTX "stdlib.h" HAVE_SHA2_CTX)
-check_symbol_exists(uintptr_t "stdlib.h" HAVE_UINTPTR_T)
-check_symbol_exists(utime "stdlib.h" HAVE_UTIME)
-check_symbol_exists(utimes "stdlib.h" HAVE_UTIMES)
-check_symbol_exists(wcwidth "stdlib.h" HAVE_WCWIDTH)
-check_symbol_exists(_futime "stdlib.h" HAVE__FUTIME)
-
-check_type_size(_Bool HAVE__BOOL)
-
-check_struct_has_member(stat st_atimensec "stdlib.h" HAVE_STRUCT_STAT_ST_ATIMENSEC)
-check_struct_has_member(stat st_atimespec.tv_nsec "stdlib.h" HAVE_STRUCT_STAT_ST_ATIMESPEC_TV_NSEC)
-check_struct_has_member(stat st_atim.st__tim.tv_nsec "stdlib.h" HAVE_STRUCT_STAT_ST_ATIM_ST__TIM_TV_NSEC)
-check_struct_has_member(stat st_atim.tv_nsec "stdlib.h" HAVE_STRUCT_STAT_ST_ATIM_TV_NSEC)
-check_struct_has_member(stat st_uatime "stdlib.h" HAVE_STRUCT_STAT_ST_UATIME)
-
-check_type_size(size_t SIZEOF_SIZE_T)
+ac_init("XZ Utils" 5.2.3)
+ac_check_headers(minix/config.h)
+ac_header_stdc()
+ac_check_funcs(clock_gettime pthread_condattr_setclock)
+ac_check_decls("#include <time.h>" CLOCK_MONOTONIC)
+ac_check_headers(dlfcn.h)
+ac_check_headers(fcntl.h limits.h sys/time.h)
+ac_check_headers(immintrin.h)
+ac_header_stdbool()
+ac_check_types("" _Bool)
+ac_check_type(uintptr_t "")
+ac_check_sizeof(size_t)
+ac_check_members("
+    struct stat.st_atim.tv_nsec,
+    struct stat.st_atimespec.tv_nsec,
+    struct stat.st_atimensec,
+    struct stat.st_uatime,
+    struct stat.st_atim.st__tim.tv_nsec" "")
+ac_check_member("struct stat.st_atim.tv_nsec" "")
+ac_check_member("struct stat.st_atimespec.tv_nsec" "")
+ac_check_member("struct stat.st_atimensec" "")
+ac_check_member("struct stat.st_uatime" "")
+ac_check_member("struct stat.st_atim.st__tim.tv_nsec" "")
+ac_sys_largefile()
+ac_c_bigendian()
+ac_check_headers(getopt.h)
+ac_check_funcs(getopt_long)
+ac_check_decl(optreset "#include <getopt.h>")
+ac_check_funcs(futimens futimes futimesat utimes _futime utime)
+ac_check_funcs(posix_fadvise)
+ac_check_decls("#include <errno.h>" program_invocation_name)
+ac_check_decl(program_invocation_name "#include <errno.h>")
+ac_check_headers(byteswap.h sys/endian.h sys/byteorder.h)
+ac_check_headers(sys/param.h)
+ac_check_funcs(wcwidth)
+ac_check_headers(CommonCrypto/CommonDigest.h sha256.h sha2.h)
+ac_check_types("#ifdef HAVE_SYS_TYPES_H
+              # include <sys/types.h>
+              #endif
+              #ifdef HAVE_COMMONCRYPTO_COMMONDIGEST_H
+              # include <CommonCrypto/CommonDigest.h>
+              #endif
+              #ifdef HAVE_SHA256_H
+              # include <sha256.h>
+              #endif
+              #ifdef HAVE_SHA2_H
+              # include <sha2.h>
+              #endif" CC_SHA256_CTX, SHA256_CTX, SHA2_CTX)
+ac_check_funcs(CC_SHA256_Init SHA256Init SHA256_Init)
+ac_check_decl(_mm_movemask_epi8 "#ifdef HAVE_IMMINTRIN_H
+#include <immintrin.h>
+#endif")
+ac_check_headers(sys/capsicum.h)
+ac_check_decl(cap_rights_limit "#include <sys/capability.h>")
+ac_search_libs("HAVE_CLOCK_GETTIME" clock_gettime rt)
+ac_search_libs("" SHA256Init md)
+ac_search_libs("" SHA256_Init md)
 
 if(UNIX)
-    set(_POSIX_SOURCE 1)
     set(MYTHREAD_POSIX 1)
 else()
     set(MYTHREAD_VISTA 1)
@@ -264,6 +261,6 @@ set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 set(PACKAGE_VERSION 5.2.3)
 set(PACKAGE_URL "http://tukaani.org/lzma/")
 set(PTHREAD_CFLAGS)
-set(LIBS)
+# set(LIBS)
 configure_file(src/liblzma/liblzma.pc.in ${CMAKE_BINARY_DIR}/liblzma.pc @ONLY)
 install(FILES ${CMAKE_BINARY_DIR}/liblzma.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig/)
