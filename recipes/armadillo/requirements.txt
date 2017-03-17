@@ -1,0 +1,2 @@
+lapack
+hdf5

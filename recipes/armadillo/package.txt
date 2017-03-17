@@ -1,0 +1,1 @@
+http://sourceforge.net/projects/arma/files/armadillo-7.800.1.tar.xz -H sha256:5ada65a5a610301ae188bb34f0ac6e7fdafbdbcd0450b0adb7715349ae14b8db
