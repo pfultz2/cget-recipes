@@ -1,3 +1,4 @@
 allegro
+glfw
 sdl
 sfml

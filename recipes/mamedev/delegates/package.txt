@@ -1,0 +1,1 @@
+mamedev/delegates@master -X build.cmake

@@ -1,1 +1,1 @@
-billyquith/GWork@gwork
+billyquith/GWork@gwork -DRENDER_ALLEGRO5=ON -DRENDER_OPENGL=ON -DRENDER_SDL2=ON -DRENDER_SFML2=ON

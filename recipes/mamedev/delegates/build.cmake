@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 2.8)
+project(delegate)
+file(GLOB_RECURSE SOURCES delegate.c delegate.cpp delegate.cc delegate.cxx)
+file(GLOB_RECURSE HEADERS delegate.h delegate.hpp delegate.hh delegate.hxx)
+add_library(delegate ${SOURCES})
+install(TARGETS delegate DESTINATION lib)
+install(FILES ${HEADERS} DESTINATION include)
