@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 2.8)
+project(slre)
+file(GLOB_RECURSE SOURCES slre.c slre.cpp slre.cc slre.cxx)
+file(GLOB_RECURSE HEADERS slre.h slre.hpp slre.hh slre.hxx)
+add_library(slre ${SOURCES})
+install(TARGETS slre DESTINATION lib)
+install(FILES ${HEADERS} DESTINATION include)

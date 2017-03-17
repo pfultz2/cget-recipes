@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 2.8)
+project(0xabad1dea)
+file(GLOB_RECURSE SOURCES 0xabad1dea.c 0xabad1dea.cpp 0xabad1dea.cc 0xabad1dea.cxx)
+file(GLOB_RECURSE HEADERS 0xabad1dea.h 0xabad1dea.hpp 0xabad1dea.hh 0xabad1dea.hxx)
+add_library(0xabad1dea ${SOURCES})
+install(TARGETS 0xabad1dea DESTINATION lib)
+install(FILES ${HEADERS} DESTINATION include)

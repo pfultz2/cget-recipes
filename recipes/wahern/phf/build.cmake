@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 2.8)
+project(phf)
+file(GLOB_RECURSE SOURCES phf.c phf.cpp phf.cc phf.cxx)
+file(GLOB_RECURSE HEADERS phf.h phf.hpp phf.hh phf.hxx)
+add_library(phf ${SOURCES})
+install(TARGETS phf DESTINATION lib)
+install(FILES ${HEADERS} DESTINATION include)

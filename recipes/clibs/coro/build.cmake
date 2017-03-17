@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 2.8)
+project(coro)
+file(GLOB_RECURSE SOURCES coro.c coro.cpp coro.cc coro.cxx)
+file(GLOB_RECURSE HEADERS coro.h coro.hpp coro.hh coro.hxx)
+add_library(coro ${SOURCES})
+install(TARGETS coro DESTINATION lib)
+install(FILES ${HEADERS} DESTINATION include)

@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 2.8)
+project(bigint)
+file(GLOB_RECURSE SOURCES bigint.c bigint.cpp bigint.cc bigint.cxx)
+file(GLOB_RECURSE HEADERS bigint.h bigint.hpp bigint.hh bigint.hxx)
+add_library(bigint ${SOURCES})
+install(TARGETS bigint DESTINATION lib)
+install(FILES ${HEADERS} DESTINATION include)

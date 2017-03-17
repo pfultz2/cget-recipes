@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 2.8)
+project(FastNoise)
+file(GLOB_RECURSE SOURCES FastNoise.c FastNoise.cpp FastNoise.cc FastNoise.cxx)
+file(GLOB_RECURSE HEADERS FastNoise.h FastNoise.hpp FastNoise.hh FastNoise.hxx)
+add_library(FastNoise ${SOURCES})
+install(TARGETS FastNoise DESTINATION lib)
+install(FILES ${HEADERS} DESTINATION include)

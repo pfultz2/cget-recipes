@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 2.8)
+project(MiniParser)
+file(GLOB_RECURSE SOURCES MiniParser.c MiniParser.cpp MiniParser.cc MiniParser.cxx)
+file(GLOB_RECURSE HEADERS MiniParser.h MiniParser.hpp MiniParser.hh MiniParser.hxx)
+add_library(MiniParser ${SOURCES})
+install(TARGETS MiniParser DESTINATION lib)
+install(FILES ${HEADERS} DESTINATION include)

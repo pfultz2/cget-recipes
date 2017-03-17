@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 2.8)
+project(smbf)
+file(GLOB_RECURSE SOURCES smbf.c smbf.cpp smbf.cc smbf.cxx)
+file(GLOB_RECURSE HEADERS smbf.h smbf.hpp smbf.hh smbf.hxx)
+add_library(smbf ${SOURCES})
+install(TARGETS smbf DESTINATION lib)
+install(FILES ${HEADERS} DESTINATION include)

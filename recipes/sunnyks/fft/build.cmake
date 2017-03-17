@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 2.8)
+project(fft)
+file(GLOB_RECURSE SOURCES fft.c fft.cpp fft.cc fft.cxx)
+file(GLOB_RECURSE HEADERS fft.h fft.hpp fft.hh fft.hxx)
+add_library(fft ${SOURCES})
+install(TARGETS fft DESTINATION lib)
+install(FILES ${HEADERS} DESTINATION include)

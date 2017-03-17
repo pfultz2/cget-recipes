@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 2.8)
+project(NanoLog)
+file(GLOB_RECURSE SOURCES NanoLog.c NanoLog.cpp NanoLog.cc NanoLog.cxx)
+file(GLOB_RECURSE HEADERS NanoLog.h NanoLog.hpp NanoLog.hh NanoLog.hxx)
+add_library(NanoLog ${SOURCES})
+install(TARGETS NanoLog DESTINATION lib)
+install(FILES ${HEADERS} DESTINATION include)

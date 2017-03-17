@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 2.8)
+project(AudioFFT)
+file(GLOB_RECURSE SOURCES AudioFFT.c AudioFFT.cpp AudioFFT.cc AudioFFT.cxx)
+file(GLOB_RECURSE HEADERS AudioFFT.h AudioFFT.hpp AudioFFT.hh AudioFFT.hxx)
+add_library(AudioFFT ${SOURCES})
+install(TARGETS AudioFFT DESTINATION lib)
+install(FILES ${HEADERS} DESTINATION include)

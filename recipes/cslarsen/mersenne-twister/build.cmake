@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 2.8)
+project(mersenne-twister)
+file(GLOB_RECURSE SOURCES mersenne-twister.c mersenne-twister.cpp mersenne-twister.cc mersenne-twister.cxx)
+file(GLOB_RECURSE HEADERS mersenne-twister.h mersenne-twister.hpp mersenne-twister.hh mersenne-twister.hxx)
+add_library(mersenne-twister ${SOURCES})
+install(TARGETS mersenne-twister DESTINATION lib)
+install(FILES ${HEADERS} DESTINATION include)
