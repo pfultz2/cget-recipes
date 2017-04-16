@@ -51,7 +51,7 @@ ac_check_types("#ifdef HAVE_SYS_TYPES_H
               #endif
               #ifdef HAVE_SHA2_H
               # include <sha2.h>
-              #endif" CC_SHA256_CTX, SHA256_CTX, SHA2_CTX)
+              #endif" CC_SHA256_CTX SHA256_CTX SHA2_CTX)
 ac_check_funcs(CC_SHA256_Init SHA256Init SHA256_Init)
 ac_check_decl(_mm_movemask_epi8 "#ifdef HAVE_IMMINTRIN_H
 #include <immintrin.h>
@@ -71,6 +71,10 @@ endif()
 
 ac_config_header(config.h.in ${CMAKE_BINARY_DIR}/config.h)
 
+if(NOT HAVE_CC_SHA256_INIT OR HAVE_SHA256_INIT OR HAVE_SHA256INIT)
+    set(SHA256_SRC src/liblzma/check/sha256.c)
+endif()
+
 set(lzma_SOURCES
     src/common/tuklib_cpucores.c
     src/common/tuklib_physmem.c
@@ -79,7 +83,7 @@ set(lzma_SOURCES
     src/liblzma/check/crc32_table.c
     src/liblzma/check/crc64_fast.c
     src/liblzma/check/crc64_table.c
-    src/liblzma/check/sha256.c
+    # src/liblzma/check/sha256.c
     src/liblzma/common/alone_decoder.c
     src/liblzma/common/alone_encoder.c
     src/liblzma/common/auto_decoder.c
@@ -145,6 +149,7 @@ set(lzma_SOURCES
     src/liblzma/simple/simple_encoder.c
     src/liblzma/simple/sparc.c
     src/liblzma/simple/x86.c
+    ${SHA256_SRC}
 )
 
 set(lzma_HEADERS
