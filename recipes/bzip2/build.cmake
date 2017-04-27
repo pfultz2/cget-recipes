@@ -6,6 +6,7 @@
 
 PROJECT(bzip2 C)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+find_package(cget-recipe-utils)
 # Where to install module parts:
 set(INSTALL_BIN bin CACHE PATH "Where to install binaries to.")
 set(INSTALL_LIB lib CACHE PATH "Where to install libraries to.")
@@ -24,6 +25,10 @@ if(MSVC)
 endif(MSVC)
 
 ADD_DEFINITIONS(-D_FILE_OFFSET_BITS=64)
+
+if(MINGW)
+    patch_file(bzip2.c "sys\\stat.h" "sys/stat.h")
+endif()
 
 # Library
 SET(BZIP2_SRCS blocksort.c huffman.c crctable.c randtable.c
