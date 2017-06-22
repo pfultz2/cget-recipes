@@ -13,6 +13,14 @@ else()
     set(PNG_TESTS Off CACHE BOOL "")
 endif()
 
+# Use the prebuilt pnglibconf header (by copying it into place and renaming it) when building
+# as a static lib, to prevent potential 'ZLIB_VERNUM != PNG_ZLIB_VERNUM' errors that can be
+# caused if a different version of the header is found elsewhere in the include paths.
+if(NOT BUILD_SHARED_LIBS)
+	file(COPY ${Project_SOURCE_DIR}/scripts/pnglibconf.h.prebuilt DESTINATION ${Project_SOURCE_DIR})
+	file(RENAME ${Project_SOURCE_DIR}/pnglibconf.h.prebuilt ${Project_SOURCE_DIR}/pnglibconf.h)
+endif()
+
 include(${CGET_CMAKE_ORIGINAL_SOURCE_FILE})
 
 if(MSVC)
