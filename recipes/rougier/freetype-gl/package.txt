@@ -1,0 +1,2 @@
+rougier/freetype-gl@master -X build.cmake -Dfreetype-gl_BUILD_TESTS=OFF -Dfreetype-gl_WITH_GLEW=OFF -Dfreetype-gl_USE_VAO=ON -Dfreetype-gl_BUILD_DEMOS=OFF -Dfreetype-gl_BUILD_APIDOC=OFF -Dfreetype-gl_BUILD_HARFBUZZ=OFF -Dfreetype-gl_BUILD_MAKEFONT=OFF
+
