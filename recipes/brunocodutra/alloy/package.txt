@@ -1,0 +1,1 @@
+brunocodutra/alloy@standalone -X build.cmake
