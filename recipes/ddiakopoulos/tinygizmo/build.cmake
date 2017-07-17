@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 2.8)
+project(tiny-gizmo)
+file(GLOB_RECURSE SOURCES tiny-gizmo.c tiny-gizmo.cpp tiny-gizmo.cc tiny-gizmo.cxx)
+file(GLOB_RECURSE HEADERS tiny-gizmo.h tiny-gizmo.hpp tiny-gizmo.hh tiny-gizmo.hxx)
+add_library(tiny-gizmo ${SOURCES})
+install(TARGETS tiny-gizmo DESTINATION lib)
+install(FILES ${HEADERS} DESTINATION include)

@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 2.8)
+project(lfq)
+file(GLOB_RECURSE SOURCES lfq.c lfq.cpp lfq.cc lfq.cxx)
+file(GLOB_RECURSE HEADERS lfq.h lfq.hpp lfq.hh lfq.hxx)
+add_library(lfq ${SOURCES})
+install(TARGETS lfq DESTINATION lib)
+install(FILES ${HEADERS} DESTINATION include)

@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 2.8)
+project(jsonxx)
+file(GLOB_RECURSE SOURCES jsonxx.c jsonxx.cpp jsonxx.cc jsonxx.cxx)
+file(GLOB_RECURSE HEADERS jsonxx.h jsonxx.hpp jsonxx.hh jsonxx.hxx)
+add_library(jsonxx ${SOURCES})
+install(TARGETS jsonxx DESTINATION lib)
+install(FILES ${HEADERS} DESTINATION include)

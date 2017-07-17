@@ -1,0 +1,1 @@
+https://github.com/urho3d/Urho3D/archive/1.6.tar.gz -H sha256:565082c17bba35c980bf3ce39e96e05038ad80ea81725469c3749bc9c1c50bad

@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 2.8)
+project(lowzip)
+file(GLOB_RECURSE SOURCES lowzip.c lowzip.cpp lowzip.cc lowzip.cxx)
+file(GLOB_RECURSE HEADERS lowzip.h lowzip.hpp lowzip.hh lowzip.hxx)
+add_library(lowzip ${SOURCES})
+install(TARGETS lowzip DESTINATION lib)
+install(FILES ${HEADERS} DESTINATION include)

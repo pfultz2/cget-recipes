@@ -1,0 +1,1 @@
+https://github.com/jeremyong/Selene/archive/v0.4.tar.gz -H sha256:e448981a3247541c497a7d0ca90e6a1b61f58ede5fcb4e7fc1c1ec25ed3f5a57

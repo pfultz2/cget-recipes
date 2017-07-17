@@ -1,0 +1,1 @@
+https://github.com/DaveGamble/cJSON/archive/v1.5.7.tar.gz -H sha256:27ebca00cd57fda0d9cdf13d9d756e295981c0315d85b14f7435b3b4ff501ad1

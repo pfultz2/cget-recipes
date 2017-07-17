@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 2.8)
+project(PacketAllocator)
+file(GLOB_RECURSE SOURCES PacketAllocator.c PacketAllocator.cpp PacketAllocator.cc PacketAllocator.cxx)
+file(GLOB_RECURSE HEADERS PacketAllocator.h PacketAllocator.hpp PacketAllocator.hh PacketAllocator.hxx)
+add_library(PacketAllocator ${SOURCES})
+install(TARGETS PacketAllocator DESTINATION lib)
+install(FILES ${HEADERS} DESTINATION include)

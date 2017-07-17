@@ -1,0 +1,1 @@
+https://github.com/QuantStack/xsimd/archive/3.0.1.tar.gz -H sha256:1903c1487088ae5e1694ad400898ee133538da62011ef2ab17a647e0831c9945

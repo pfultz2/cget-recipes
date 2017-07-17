@@ -1,0 +1,1 @@
+https://github.com/Zeex/subhook/archive/v0.4.tar.gz -H sha256:38a902ebbb807973db75c269c18d66f4a97aa47f98a615d83a7a89e015890b7d
