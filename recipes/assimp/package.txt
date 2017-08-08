@@ -1,0 +1,1 @@
+https://github.com/assimp/assimp/archive/v4.0.1.tar.gz -H sha256:60080d8ab4daaab309f65b3cffd99f19eb1af8d05623fff469b9b652818e286e
