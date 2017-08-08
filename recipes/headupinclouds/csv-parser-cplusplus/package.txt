@@ -1,0 +1,1 @@
+https://github.com/headupinclouds/csv-parser-cplusplus/archive/v1.0.1.tar.gz -H sha256:4f99a78ba735234700caafbf8d6b318289b7f1f7dc2ac3c5cb6907d091bb5674
