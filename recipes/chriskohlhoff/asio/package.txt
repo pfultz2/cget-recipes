@@ -1,1 +1,1 @@
-chriskohlhoff/asio@master -X header -DINCLUDE_DIR="asio/include"
+chriskohlhoff/asio@asio-1-10-6 -X header -DINCLUDE_DIR="asio/include"

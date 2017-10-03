@@ -1,1 +1,1 @@
-rpclib@master
+https://github.com/rpclib/rpclib/archive/v2.1.1.tar.gz -H sha256:f538dd45c44505f9c8d16897a9e48cdeea516d03a45770dd886b77d9ca29ea9c -X build.cmake
