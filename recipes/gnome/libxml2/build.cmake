@@ -178,7 +178,7 @@ add_definitions(-DHAVE_CONFIG_H=1)
 add_definitions(-DLIBXML_THREAD_ENABLED=1)
 
 parse_makefile_var(Makefile.am libxml2_la_SOURCES)
-list(FILTER libxml2_la_SOURCES EXCLUDE REGEX "^\\$")
+list_filter(libxml2_la_SOURCES EXCLUDE "^\\$")
 add_library(xml2 ${libxml2_la_SOURCES})
 if(THREADS_HAVE_PTHREAD_ARG)
     target_compile_options(xml2 PUBLIC "-pthread")

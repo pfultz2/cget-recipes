@@ -1,3 +1,4 @@
+gnome/libxml2
 nas
 libressl
 zlib
