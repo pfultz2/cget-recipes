@@ -1,1 +1,1 @@
-cpp-netlib/uri@master
+cpp-netlib/uri@master -DUri_BUILD_TESTS=Off

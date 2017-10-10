@@ -1,1 +1,1 @@
-xianyi/OpenBLAS@develop -DBUILD_WITHOUT_LAPACK=On
+xianyi/OpenBLAS@v0.2.20 -DBUILD_WITHOUT_LAPACK=On
