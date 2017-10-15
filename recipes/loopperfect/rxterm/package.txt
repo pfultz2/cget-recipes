@@ -1,0 +1,1 @@
+LoopPerfect/rxterm@v0.0.1 -X header -DINCLUDE_DIR=rxterm/include

@@ -1,0 +1,1 @@
+https://github.com/effolkronium/random/archive/1.0.0.tar.gz -H sha256:333ab42a837a3567a6c4616cdb4ccedac280c761cf61f127da3940cbdf9a104d
