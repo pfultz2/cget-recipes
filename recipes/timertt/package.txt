@@ -1,0 +1,1 @@
+https://downloads.sourceforge.net/project/sobjectizer/timertt/timertt-1.2/timertt-1.2.0-headeronly.tar.bz2 -H sha256:cd45e5016ba85b38a67442794567d378775fd25e43353e398c26fd311f39e1c8 -X header

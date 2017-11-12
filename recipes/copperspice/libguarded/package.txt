@@ -1,0 +1,1 @@
+copperspice/libguarded@libguarded-1.1.0 -X header -DINCLUDE_DIR=src

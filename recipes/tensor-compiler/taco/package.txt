@@ -1,0 +1,1 @@
+https://github.com/tensor-compiler/taco/archive/oopsla2017.tar.gz -H sha256:705d05b16b349093fdf081122f22359d44e4dc2b28904daebc4d84b5a27a94af
