@@ -1,1 +1,2 @@
-philsquared/Catch@master
+philsquared/Catch@master -DNO_SELFTEST=1
+
