@@ -1,0 +1,2 @@
+catchorg/Catch2@master -DNO_SELFTEST=1
+
