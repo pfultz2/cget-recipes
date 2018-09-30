@@ -1,1 +1,1 @@
-google/googletest@master
+google/googletest@master -DCMAKE_CXX_STANDARD=11
