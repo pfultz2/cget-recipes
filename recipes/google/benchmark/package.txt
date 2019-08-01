@@ -1,1 +1,1 @@
-google/benchmark@master
+google/benchmark@master -DBENCHMARK_ENABLE_GTEST_TESTS=OFF
