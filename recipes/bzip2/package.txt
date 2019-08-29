@@ -1,1 +1,1 @@
-https://gitlab.com/bzip/bzip2/-/archive/d2742e07c4257b51809d25ddaa2c9ee047b7a278/bzip2-d2742e07c4257b51809d25ddaa2c9ee047b7a278.tar.gz -H md5:345eb6c2765b3dbf61c6bf677bf3993d -X build.cmake
+https://sourceforge.net/projects/bzip2/files/bzip2-1.0.6.tar.gz -H md5:00B516F4704D4A7CB50A1D97E6E8E15B -X build.cmake
