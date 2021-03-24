@@ -1,0 +1,3 @@
+# This dummy requirements.txt file is here only to suppress the use of
+# the (non-cget-related) requirements.txt file found in the Google
+# Benchmark source.
